@@ -1,0 +1,21 @@
+\usepackage{fontspec}
+
+\setmainfont{STIX2Text}[
+Path = ../fonts/,
+Extension       = .otf,
+UprightFont     = *-Regular,
+ItalicFont      = *-Italic,
+BoldFont        = *-Bold,
+BoldItalicFont  = *-BoldItalic ]
+
+\usepackage[math-style=ISO]{unicode-math}
+\setmathfont{STIX2Math}[
+Path = ../fonts/,
+Extension = .otf
+]
+
+\setsansfont[Scale=MatchLowercase]{TeX Gyre Heros}
+
+\setmonofont{Input Mono}
+
+\usepackage[tracking=false]{microtype}

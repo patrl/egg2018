@@ -1,0 +1,387 @@
+\documentclass[nofonts,nobib]{tufte-handout}
+
+\title{MaxElide}
+
+\input{../common/tufteXetexFix.tex}
+\input{../common/extraPackages.tex}
+\input{../common/fontSetup.tex}
+\input{../common/bib.tex}
+\input{../common/lingMacros.tex}
+% \input{../common/towers.tex}
+
+\setcounter{secnumdepth}{3}
+
+\setlength{\parindent}{0pt}
+
+\author{Patrick D. Elliott}
+
+\date{\today}
+
+\begin{document}
+
+\input{../common/acronyms.tex}
+
+\maketitle
+
+\section{Strict vs.\,sloppy}
+
+\begin{itemize}
+
+  \item We've already seen that elliptical constructions involving bound variables can give rise to an ambiguity.
+    
+    \ex
+    Ivan sold his telecaster. Jorge also did Δ.
+    \xe
+
+    \pex~
+    \a Δ = sell Ivan's telecaster.\marginnote{strict}  
+    \a Δ = sell Jorge's telecaster.\marginnote{sloppy}
+    \xe
+    
+  \item On an approach to ellipsis assuming \emph{silent structure}, the classical
+   analysis of the sloppy reading is to posit a bound variable inside of the
+   EC.
+   
+    \ex
+    Ivan\(^{x}\) [\(_{\text{VP}}\) sold his\(_{x}\) telecaster].\newline
+    Jorge\(^{y}\) also did \elide{sell his\(_{y}\) telecaster}. 
+    \xe
+
+  \item Question: how is the \emph{identity condition} on ellipsis met under the sloppy reading?
+    
+    \ex
+    \label{parallelism}\emph{The parallelism condition}\newline
+    Ellipsis of EC requires semantic identity with with an antecedent constituent AC.
+    \xe
+
+
+  \item The pronoun in the AC picks out \emph{Ivan}, but the pronoun in the EC picks out \emph{Jorge}.\sidenote{The functions in (\ref{clauses}) aren't \(α\)-equivalent, since there are contexts which map $x$ and $y$ to distinct individuals.}
+
+    \pex\label{clauses}
+    \a \(\eval[g]{AC} = x\,\metalang{sold}\,\metalang{telecaster}(x)\)
+    \a \(\eval[g]{EC} = y\,\metalang{sold}\,\metalang{telecaster}(y)\)
+    \xe
+     
+  \item \citet{sag1976} and \citet{williams_discourse_1977} argue that, under the sloppy reading, the AC and the EC \emph{are} in fact identical - the pronoun is interpreted as a variable bound by a VP-internal λ-operator.\sidenote{
+    Note that, since each occurrence of the variable $y$ is bound by a matching \(λ\)-operator, the choice of variable name in the EC doesn't matter here for the purposes of semantic identity. In other words, VP-A and VP-E denote \(α\)-equivalent functions.
+    }
+
+    \ex   
+    Ivan [\( λ x .  x \) sold \(x\)'s telecaster].\newline
+    Jorge also did \elide{\( λ y . y\) sold \(y\)'s telecaster}.
+    \xe
+    
+    
+\end{itemize}
+
+\section{Re-binding}
+
+\subsection{Re-binding vs.\,internal binding}
+
+\begin{itemize}
+
+  \item The Sag-Williams account of the strict-sloppy ambiguity makes a straightforward prediction \emph{internal binding} as in (\ref{intbinding}), is allowed, but \emph{re-binding} as in (\ref{rebinding}), is not. 
+    
+    \begin{multicols}{2}
+
+    \pex\label{rebinding}\emph{Re-binding} \xmark
+    \a\label{rebindingA}[ \ldots\,\(λ x\) \ldots\,[\(_{\text{AC}}\) \ldots\,\(x\) \ldots\,]]
+    \a\label{rebindingE}[ \ldots\,\(λ y\) \ldots\,\elide{[\(_{\text{EC}}\) \ldots\,\(y\) \ldots\,]}]
+    \xe
+    
+    \columnbreak
+    
+    \pex\label{intbinding}\emph{Internal binding} \cmark
+    \a\label{intbindingA}[ \ldots\,[\(_{\text{AC}}\) \ldots\,\(λ\,x\)\ldots\,\(x\) \ldots\,]]
+    \a\label{intbindingE}[ \ldots\,\elide{[\(_{\text{EC}}\) \ldots\,\(λ\,y\)\,\ldots\,\(x\) \ldots\,]}]
+    \xe
+    
+    \end{multicols}
+    
+  \item In other words, \emph{sloppy identity} requires an EC-internal binder, and a corresponding AC-internal binder.
+
+\end{itemize}
+
+\subsection{Evidence for the Sag-Williams position}
+
+\begin{itemize}
+
+  \item Internal binding should only be possible if the understood antecedent of the variable is the sister of the EC. \emph{Parallelism} therefore rules out (\ref{rebinding2b}).
+
+    \pex\label{rebinding2}
+    \a\label{rebinding2a}Jorge said that Tanya likes him\(_{J}\),\newline
+    and \textsc{Ivan} also did \elide{\( λ x . x \) say that Tanya likes \(x\)}.
+    \a\ljudge{*}\label{rebinding2b}Jorge said that Tanya likes him\(_{J}\),\newline
+    and \textsc{Ivan} also \( λ x . x \) said that she does \elide{\( λ y . y \) like \(x\)}.
+    \xe
+    
+  \item Consider also the following example from \citet[p.\,225]{fox_maxelide_2005}, where wh-movement creates the re-binding configuration:\sidenote{Note that, because of the possibility of \emph{successive-cycle wh-movement}, it is not immediately obvious that the parallelism condition rules out the configuration in (\ref{foxtak1}).
+
+    Concretely, why can't wh-movement leave behind an intermediate trace adjacent to the EC?
+    
+    \ex
+    which one \( λ x .  \) we did \(t_{x}\) \elide{\( λ x . λ y . y\) invite \(x\)}
+    \xe
+
+}
+    
+    \pex\label{foxtak1}
+    \a\label{foxtak1a}John knows which professor we invited,\newline
+    but he is not allowed to reveal which one \elide{\( λ x . x \) we invited \(x\)}.
+    \a\ljudge{*}\label{foktak1b}John knows which professor we invited,\newline
+    but he is not allowed to reveal\newline
+    which one \( λ x .  \) we did \elide{\( λ y . y \) invite \(x\)}.
+    \xe
+
+\end{itemize}
+
+\subsection{Evidence against the Sag-Williams position}
+
+\begin{itemize}
+
+  \item Sometimes, it looks like sloppy identity is possible even where internal binding is not:
+
+    \ex
+    \label{evAgainst}Jorge insists that Tanja likes him,\newline
+    but \textsc{Ivan} \( λ x . x \) \uwave{\textsc{denies}} that she does \elide{\( λ y .  y\) like \(x\)}
+    \xe
+    
+  \item The same point goes for rebinding configurations created by movement (\citealt[p\,226]{fox_maxelide_2005}):
+
+\ex
+\label{evAgainst2}Mary doesn't know who we can invite,\newline
+    but she can tell you who \( λ x .  \) we can \uwave{\textsc{not}} \elide{\( λ y . y \) invite \(x\)}
+\xe
+    
+  \item The empirical generalization that \citet{fox_maxelide_2005} suggest is the following:
+
+    \ex
+    \label{interv}\emph{Intervening focus:}\newline
+    when a focused-expression intervenes between the re-binder and and the re-bound variable, ellipsis is licensed.
+    \xe
+    
+\end{itemize}
+    
+\section{Enter \textsc{MaxElide}}
+
+\begin{itemize}
+
+  \item \todo[inline]{Add maxelide references here}
+    
+\ex \textsc{MaxElide} (alpha version)\newline
+Elide the largest deletable constituent.
+\xe
+    
+  \item In all of our unacceptable cases, there was a bigger constituent that \emph{could've} been deleted.\sidenote{VP-ellipsis conditions the spell-out of T, which distracts from the parallel between (\ref{rebinding3a}) and (\ref{rebinding3b}). I've used \emph{do}-insertion here to draw attention to the parallel, even though it sounds a little unnatural.}
+    
+\pex\label{rebinding3}Jorge said that Tanya likes him\(_{J}\)
+    \a\label{rebinding3a}\ldots and \textsc{Ivan} also did \elide{\( λ x . x \) say that she does \( λ y . y \) like \(x\)}.
+    \a\ljudge{*}\label{rebinding3b}\ldots and \textsc{Ivan} also did \( λ x . x \) say that she does \elide{\( λ y . y \) like \(x\)}.
+    \xe
+    
+  \item In the acceptable cases, however, the presence of an intervening focus blocks deletion of the larger constituent.
+    
+  \item (\ref{evAgainst2a}) isn't a candidate deletion, since it violates the parallelism condition.
+    
+\pex
+    \label{evAgainst2}Jorge insists that Tanja likes him,
+    \a\label{evAgainst2a}\ljudge{\xmark}\ldots but \textsc{Ivan} \elide{\( λ x . x \) \textsc{denies} that she does \elide{\( λ y .  y\) like \(x\)}}
+    \a\label{evAgainst2b}\ljudge{\cmark}\ldots but \textsc{Ivan} \( λ x . x \) \uwave{\textsc{denies}} that she does \elide{\( λ y .  y\) like \(x\)}
+    \xe
+
+\end{itemize}
+
+\subsection{Circumvention of \textsc{MaxElide}}
+
+\begin{itemize}
+
+  \item It's not hard to come up with counter-examples to \textsc{MaxElide}:
+
+    \pex Jorge said that Tanya likes Ivan,
+    \a \ldots \textsc{Robert} also said she does \elide{like Ivan}.
+    \a \ldots \textsc{Robert} also did \elide{say that she likes Ivan}.
+    \xe
+    
+  \item \todo[inline]{Add Merchant reference}
+    
+    \ex\label{maxElideBeta}
+    \textsc{MaxElide} (beta version)\newline
+    Elide the biggest deletable constituent if EC contains a variable that is free within EC.
+    \xe
+    
+  \item The constraint in (\ref{maxElideBeta}) is still not quite general enough. \citet{fox_maxelide_2005} observe that it fails to rule out \emph{co-binding} configurations:
+    
+    \pex\label{cobinding}I know which puppy \( λ x .  \) \ldots
+    \a\label{cobinding1}\ldots you said Mary would adopt\newline
+    and Fred did \elide{say she would adopt \(x\)} too.
+    \a\label{cobinding2}\ldots you said Mary would adopt\newline
+    and Fred said she would \elide{adopt \(x\)} too.
+    \xe
+    
+  \item In \emph{co-binding}, unlike \emph{re-binding} configurations the variables free within AC and EC are re-bound by the same re-binder.
+    
+  \item \citet{fox_maxelide_2005} suggest the following refinement of \textsc{MaxElide}:
+
+    \ex
+    \label{final}\textsc{MaxElide} \(1.0\)\newline
+    Elide the biggest deletable constituent in a re-binding configuration.\newline
+    A re-binding configuration is a structure in which EC dominates a variable that is free within EC and is bound by a binder YP outside of EC, and there is no variable in AC also bound by YP.
+    \xe
+    
+  \item This seems to get the right empirical coverage, but is it plausible that such a complicated principle is codified in the grammar? Can it be reduced to more basic principles?
+    
+\end{itemize}
+    
+\section{\citeauthor{fox_maxelide_2005}'s (\citeyear{fox_maxelide_2005}) proposal}
+    
+\begin{itemize}
+        
+  \item \citet{fox_maxelide_2005} propose that, in order to understand where \textsc{MaxElide} applies, we must expand the domain in which the parallelism condition applies beyond just what is deleted.
+        
+  \item Instead, \citeauthor{fox_maxelide_2005} adopt a revised parallelism condition based on \citet{Rooth}.
+    
+    \ex
+    For ellipsis of EC to be licensed, there must exist a \emph{Parallelism Domain} (PD). 
+    \xe
+    
+    \pex \emph{Parallelism Domain:}\newline
+    An XP is a PD of EC iff:
+    \a XP reflexively dominates EC.
+    \a There exists a constituent \(ϕ \in \metalang{alt}(\text{XP})\), s.t. for all assignments \(g\), \(\eval[g]{ϕ} = \eval[g]{AC}\).
+    \xe
+    
+  \item \citeauthor{fox_maxelide_2005} propose that \textsc{MaxElide} is relativized to the PD:
+
+    \ex
+    \label{maxelideF}\textsc{MaxElide} \(1.1\)\newline
+    Elide the biggest deletable constituent reflexively dominated by a PD.
+    \xe
+    
+  \item Let's see how this accounts for \textsc{MaxElide} circumvention.
+    
+    \pex Jorge said that Tanya likes Ivan,
+    \a \ldots \textsc{Robert} also said she does \elide{like Ivan}.
+    \a \ldots \textsc{Robert} also did \elide{say that she likes Ivan}.
+    \xe
+    
+  \item In the above example, both possible ellipses are PDs, and therefore \textsc{MaxElide} is trivially satisfied.
+    
+  \item In re-binding configurations however, the PD must at least contain the binder, and \textsc{MaxElide} \(1.1\) demands deletion of the biggest constituent within the PD.
+
+    \pex\label{rebindingRep3}Jorge said that Tanya likes him\(_{J}\)
+    \a\label{rebindingRep3a}\ldots and \textsc{Ivan} also did [\(_{\text{PD}}\) \elide{\( λ x . x \) say that she does \( λ y . y \) like \(x\)}].
+    \a\ljudge{*}\label{rebindingRep3b}\ldots and \textsc{Ivan} also did [\(_{\text{PD}}\) \( λ x . x \) say that she does \elide{\( λ y . y \) like \(x\)}].
+    \xe       
+
+  \item Just as before, intervening focus shrinks the candidates for deletion:
+
+    \pex
+    \label{evAgainstRep2}Jorge insists that Tanja likes him,
+    \a\label{evAgainstRep2a}\ljudge{\xmark}\ldots but \textsc{Ivan} [\(_{\text{PD}}\) \elide{\( λ x . x \) \textsc{denies} that she does \( λ y .  y\) like \(x\)}]
+    \a\label{evAgainstRep2b}\ljudge{\cmark}\ldots but \textsc{Ivan} [\(_{\text{PD}}\) \( λ x . x \) \uwave{\textsc{denies}} that she does \elide{\( λ y .  y\) like \(x\)}
+    \xe
+    
+  \item Things get a little more interesting with \emph{co-binding} configurations.
+    
+    \pex\label{cobindingRep}I know which puppy \( λ x .  \) \ldots
+    \a\label{cobindingRep1}\ldots you said Mary would adopt \(x\)\newline
+    and Fred did [\(_{\text{PD}}\) \elide{say she would adopt \(x\)}] too.
+    \a\label{cobindingRep2}\ldots you said Mary would adopt \(x\)\newline
+    and Fred said she would [\(_{\text{PD}}\) \elide{adopt \(x\)}] too.
+    \xe
+    
+  \item \citeauthor{fox_maxelide_2005}'s idea is that, since in (\ref{cobindingRep2}), the variables in AC and EC are bound by the same binder, they share the same variable name, and therefore the embedded VP is also a PD. 
+    
+  \item This is trivially the case -- \(\evalM[g]{\text{adopt}\,x} = \evalM[g]{\text{adopt}\,x}\) for all assignments.
+
+  \item In co-binding configurations, circumvention of \textsc{MaxElide} crucially depends on identity of variable names.
+    
+  \item This begs the question: what prevents us from \emph{always} circumventing MaxElide by simply always picking identical variable names, even when the re-binders are distinct?, i.e.
+    
+    \pex
+    \a\label{circ}[ \ldots\,\(λ x\) \ldots [\(_{\text{AC}}\) \ldots\,\(x\) \ldots\,]]
+    \a\label{circ2}[ \ldots\,\(λ x\) \ldots \elide{[\(_{\text{EC}}\) \ldots\,\(x\) \ldots\,]}]
+    \xe
+    
+  \item To block this possibility, \citeauthor{fox_maxelide_2005} make recourse to Heim's \emph{no meaningless co-indexation} constraint. \todo[inline]{Add proper Heim citation}
+    
+\ex
+    \label{meaningless}\emph{No meaningless co-indexation}\newline
+    If an LF contains an occurrence of a variable \(v\) that is bound by a node \(α\), then all occurrences of \(v\) in this LF must be bound by the same node as \(α\).
+\xe
+    
+\end{itemize}
+    
+\section{Re-binding and covert movement}
+    
+\begin{itemize}
+
+  \item It is well known that QR can create a re-binding configuration.
+    
+  \item First off, observe that a quantificational object can take wide scope out of the EC.
+
+    \ex
+    \label{qr}A doctor treated every patient.\newline
+    A \textsc{nurse} did \elide{treat every patient} too.\marginnote{\(∃ > ∀; ∀ > ∃\)}
+    \xe
+    
+    \pex~\label{qr2}
+    \a\label{qr2a} AC: every patient \( λ x \) a doctor treated \(x\)
+    \a\label{qr2b} EC: every patient [\(_{\text{PD}}\) \(λ\,y\) \textsc{a nurse} \elide{treated \(y\)}]
+    \xe
+    
+  \item Since \emph{a nurse} is focused, the VP is indeed the biggest deletable constituent in the PD.
+    
+  \item If covert movement can create a re-binding configuration, we expect that there should be circumstances under which sloppy identity is ruled out. 
+    
+    \pex
+    At least one doctor tried to get me to arrest every patient,
+    \a \ldots and at least one \textsc{nurse} tried to get me to \elide{arrest every patient} as well.\marginnote{\(∃ > ∀; \text{*} ∀ > ∃\)}
+    \a \ldots and at least one \textsc{nurse} did \elide{try to get me to arrest every patient} as well.\marginnote{\(∃ > ∀; ? ∀ > ∃\)}
+    \xe
+    
+\end{itemize}
+    
+\section{Re-binding and scope}
+
+\begin{itemize}
+    
+  \item question here: is re-binding about \emph{covert movement}, or \emph{scope}?
+    
+\ex
+Each brother hopes that old age will kill a certain relative of theirs soon, and each sister hopes that it will too.
+\xe
+    
+\ex~
+Each brother hopes that old age will kill a certain relative of theirs soon, and each sister does too.
+\xe
+    
+\section{Donkey re-binding}
+
+\ex
+Every farmer who owns a donkey\(^{x}\) asked Mary to beat it\(_{x}\),\newline
+and every \textsc{landlord} who owns a donkey did too. 
+\xe
+    
+\ex
+Every farmer who owns a donkey\(^{x}\) asked Mary to beat it\(_{x}\),\newline
+and every \textsc{landlord} who owns a donkey asked her to as well. 
+\xe
+    
+
+    
+\end{itemize}
+
+\newpage
+
+\begin{fullwidth}
+\printbibliography
+\end{fullwidth}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:

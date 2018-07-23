@@ -1,0 +1,19 @@
+% requires the booktabs package
+\newcommand\semtower[2]{% a 2-level semantic tower
+  \begin{tabular}[c]{@{\,}c@{\,}}
+    \(#1\)
+    \\
+    \midrule
+    \(#2\)
+    \\
+  \end{tabular}
+}
+\newcommand\tower[3]{% a 2-level type/category tower
+  \begin{tabular}[c]{@{\,}c@{\,}}
+    \(\hfil #1\ \vrule width .05em\ #2 \hfil\)
+    \\
+    \midrule
+    \(#3\)
+    \\
+  \end{tabular}
+}
