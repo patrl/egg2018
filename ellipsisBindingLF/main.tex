@@ -303,12 +303,13 @@ Elide the largest deletable constituent.
     \a\label{circ2}[ \ldots\,\(λ x\) \ldots \elide{[\(_{\text{EC}}\) \ldots\,\(x\) \ldots\,]}]
     \xe
     
-  \item To block this possibility, \citeauthor{fox_maxelide_2005} make recourse to Heim's \emph{no meaningless co-indexation} constraint. \todo[inline]{Add proper Heim citation}
+  \item To block this possibility, \citeauthor{fox_maxelide_2005} make recourse to Heim's \emph{no meaningless co-indexation} constraint (\citealt{heim1997}).
     
 \ex
     \label{meaningless}\emph{No meaningless co-indexation}\newline
     If an LF contains an occurrence of a variable \(v\) that is bound by a node \(α\), then all occurrences of \(v\) in this LF must be bound by the same node as \(α\).
 \xe
+
     
 \end{itemize}
     
@@ -348,6 +349,7 @@ Elide the largest deletable constituent.
     
   \item question here: is re-binding about \emph{covert movement}, or \emph{scope}?
     
+    
 \ex
 Each brother hopes that old age will kill a certain relative of theirs soon, and each sister hopes that it will too.
 \xe
@@ -356,8 +358,10 @@ Each brother hopes that old age will kill a certain relative of theirs soon, and
 Each brother hopes that old age will kill a certain relative of theirs soon, and each sister does too.
 \xe
     
-\section{Donkey re-binding}
-
+\end{itemize}
+    
+\subsection{Donkey re-binding}
+    
 \ex
 Every farmer who owns a donkey\(^{x}\) asked Mary to beat it\(_{x}\),\newline
 and every \textsc{landlord} who owns a donkey did too. 
@@ -369,6 +373,154 @@ and every \textsc{landlord} who owns a donkey asked her to as well.
 \xe
     
 
+\subsection{Re-binding and exceptional scope}
+
+\ex
+I want to know who left my party early and what was bothering him,\newline
+and \textsc{Bill} wants to know Δ too.
+\xe
+    
+\ex Context: \emph{both I and Mary had at least one unsatisfied guest at our respective parties.}\newline
+I want to know \(\begin{aligned}[t]
+&\text{[who\(^{x}\) left my party early]}\\
+\text{and }&\text{[what was bothering him\(_{x}\)]}
+\end{aligned}\),\newline
+and \textsc{Mary} wants to know \(\begin{aligned}[t]
+&\text{[who\(^{x}\) \elide{left her party early}]}\\
+\text{and }&\text{[what \elide{was bothering him\(_{x}\)}]}
+\end{aligned}\)
+\xe
+    
+\section{\citet{griffiths18}}
+    
+\section{A monadic reconstruction of Rooth}
+    
+\begin{itemize}
+    
+  \item First let's define a type constructor \(\type{F}\) from a ordinary type \(\type{a}\), to a \emph{pair type} consisting of \(\type{a}\)s, and (characteristic functions of) sets of \(\type{a}\)s.
+    
+\ex The focus type-constructor (def.)\newline
+\(\type{F\,a} ≔ \left(
+\begin{aligned}[c]
+&\metalang{ord} :: \type{a},\\
+&\metalang{foc} :: \type{a → t}
+\end{aligned}\right)\)
+\xe
+    
+  \item Now let's define a unary type-lifter \(\eta\), that shifts ordinary values to inhabitants of \(\type{F}\), and a binary operation \(⍟\) for composing inhabitants of \(\type{F}\).\sidenote{\(⟨\type{F},η,⍟⟩\) constitutes an \emph{applicative functor}. This guarantees that is is \emph{composable} with other applicative functors, providing us with assurance that our theory of focus will play nicely with other applicative machinery.
+
+    See, e.g., \citet{charlow2018} for an account of assignment-sensitivity using \emph{applicative functors}.
+}
+    
+\pex
+    \a \(x^{\eta}≔ (x, \Set{x} ) \)
+    \a \((f,\mathbb{g}) ⍟ (x,\mathbb{y}) ≔ \left(\begin{aligned}[c]
+        &f\,x,\\
+        &\Set{g\,y|g ∈ \mathbb{g} \wedge y ∈ \mathbb{y} }
+      \end{aligned}\right)\) 
+\xe
+    
+  \item The \(η\)-shifter returns a \emph{pair} of values -- the input value \(a\), and the characteristic function of the singleton set \(\Set{a}\).
+    
+  \item \(⍟\) does ordinary composition (function application) on the \(\metalang{ord}\) values of its arguments, and \emph{pointwise} function application on the \(\metalang{foc}\) values of its arguments. 
+    
+\ex
+    \(\metalang{foc}\,x ≔ (x, \Set{y|\metalang{alt}_{x}\,y} )\)
+\xe
+    
+\ex
+\begin{forest}
+[{\((\metalang{left}\,\metalang{Bill}, \Set{\metalang{left}\,x| \metalang{alt}_{{B}}\,x})\)\\\(\type{F\,t}\)\\\( ⍟\)}  [{\((\metalang{Bill},\Set{x|\metalang{alt}_{{B}}\,x})\)\\\(\type{F\,e}\)\\\(\metalang{Bill}_{\metalang{foc}}\)}]
+  [{\((\metalang{left}, \Set{\metalang{left}} )\)\\\type{F\,(e \rightarrow t)}\\\(\metalang{left}^{\eta}\)}]]
+\end{forest}
+\xe
+    
+\ex
+I know who \textsc{John} will kiss,\newline
+and also who \textsc{Mary} will \elide{kiss}
+\xe
+
+\begin{forest}
+  [{...}
+   [{who}]
+   [{...}
+     [{\(Λ_{1}\)}]
+     [{...}
+       [{John}]
+       [{\(λ g . \metalang{kiss} g₁\)},tikz={\node [draw,red,fit=()(!1)(!2)] {};}
+         [{kiss}]
+         [{\(t_{1}\)}]
+]
+]
+]
+]
+\end{forest}
+%
+\begin{forest}
+    [{...}
+      [{who}]
+      [{...}
+        [{\(Λ_{2}\)}]
+        [{.}
+          [{Mary}]
+          [{\(λ g . \metalang{kiss} g₂\)},tikz={\node [draw,dashed,fit=()(!1)(!2)] {};}
+            [{kiss}]
+            [{\(t_{2}\)}]]]]]
+\end{forest}
+    
+    \[λ g . \metalang{kiss} g₁ ∉ \Set{λ g . \metalang{kiss} g₂}\]\marginnote{Since \(λ g . \metalang{kiss} g₁ ≢ λg . \metalang{kiss}\,g_{2}\)}
+    
+\ex
+\label{rebindingTree2}I know who \textsc{John} will kiss,\newline
+and also who \textsc{Mary} will \elide{kiss}    
+\xe
+
+
+    
+ \begin{forest}
+  [{...}
+   [{who}]
+   [{\(λ g . λ x . \metalang{kiss} g₁^{[1→x]} \metalang{John}\)},tikz={\node [draw,red,fit=()(!1)(!lll)] {};}
+     [{\(Λ_{1}\)}]
+     [{\ldots}
+       [{John}]
+       [{\ldots}
+         [{kiss}]
+         [{\(t_{1}\)}]
+]
+]
+]
+]
+\end{forest}
+%
+\begin{forest}
+    [{...}
+      [{who}]
+      [{\(\left(
+          \begin{aligned}[c]
+          &λ g . λ x . \metalang{kiss} g₂^{[2 → x]} \metalang{Mary},\\
+          &\Set{λ g . λ x . \metalang{kiss} g₂^{[2→x]} y | \metalang{alt}_{M} y}
+          \end{aligned}
+        \right)\)},tikz={\node [draw,dashed,fit=()(!1)(!lll)] {};}
+        [{\(Λ_{2}\)}]
+        [{\ldots}
+          [{Mary\(_{F}\)}]
+          [{\ldots}
+            [{kiss}]
+            [{\(t_{2}\)}]]]]]
+\end{forest}
+    
+\end{itemize}
+   
+
+\section{Ellipsis as binding}
+    
+
+  
+ 
+
+    
+ 
     
 \end{itemize}
 
