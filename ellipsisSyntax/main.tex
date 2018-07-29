@@ -1,39 +1,372 @@
-\documentclass[nofonts,nobib]{tufte-handout}
-
-\title{Sluicing i}
-
-\input{../common/tufteXetexFix.tex}
-\input{../common/extraPackages.tex}
-\input{../common/fontSetup.tex}
-\input{../common/bib.tex}
-\input{../common/lingMacros.tex}
-% \input{../common/towers.tex}
-
-\setcounter{secnumdepth}{3}
-
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[ignorenonframetext,]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+\usetheme[]{metropolis}
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={Topics in the syntax of ellipsis},
+            pdfauthor={Patrick D. Elliott},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\newif\ifbibliography
+% Prevent slide breaks in the middle of a paragraph:
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+\centering
+\begin{beamercolorbox}[sep=16pt,center]{part title}
+  \usebeamerfont{part title}\insertpart\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+\centering
+\begin{beamercolorbox}[sep=12pt,center]{part title}
+  \usebeamerfont{section title}\insertsection\par
+\end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+\centering
+\begin{beamercolorbox}[sep=8pt,center]{part title}
+  \usebeamerfont{subsection title}\insertsubsection\par
+\end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
 
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usefonttheme[onlymath]{serif}
+\input{../common/fontSetup.tex}
+\input{../common/lingMacros.tex}
+\input{../common/extraPackages.tex}
+\usepackage[bibstyle=biblatex-sp-unified,citestyle=sp-authoryear-comp,language=auto,sorting=nyt,maxcitenames=3,maxbibnames=99,natbib=true,autocite=plain,isbn=false,doi=false,url=false,hyperref=auto,uniquename=false,uniquelist=false]{biblatex}
+\addbibresource{main.bib}
+
+\title{Topics in the syntax of ellipsis}
 \author{Patrick D. Elliott}
-
-\date{\today}
+\date{25.06.2018}
 
 \begin{document}
+\frame{\titlepage}
 
-\input{../common/acronyms.tex}
+\hypertarget{class-1-sluicing-and-silent-structure}{%
+\section{Class 1: Sluicing and silent
+structure}\label{class-1-sluicing-and-silent-structure}}
 
-\maketitle
+\begin{frame}{%
+\protect\hypertarget{overview}{%
+Overview}}
 
+\begin{itemize}
+\tightlist
+\item
+  This class is about the syntax of \emph{ellipsis}.
+\end{itemize}
 
-\newpage
+\end{frame}
 
-\begin{fullwidth}
-\printbibliography
-\end{fullwidth}
+\begin{frame}{%
+\protect\hypertarget{ellipsis}{%
+Ellipsis}}
+
+\begin{itemize}
+\item
+  In \emph{elliptical constructions}, linguistic material is left
+  unpronounced, but is nevertheless understood.
+\item
+  Ellipsis is therefore a classical example of a \emph{form-meaning
+  mismatch}.
+\item
+  Some canonical examples of ellipsis (some of which we’ll be covering
+  in this class).
+
+  \begin{enumerate}
+  [(1)]
+  \item
+    \emph{Sluicing}\\
+    Someone stayed out until 7am,\\
+    but I have no idea who \elide{stayed out
+    until 7 am}.
+  \item
+    \emph{VP ellipsis}\\
+    Elin stayed out until 7am, and Fraser did
+    \elide{stay out until 7 am} too.
+  \item
+    \emph{Fragment answers}\\
+    Q: Who stayed out until 7am?\\
+    A: Elin \elide{stayed out until 7am}
+  \end{enumerate}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{ellipsis-ii}{%
+Ellipsis ii}}
+
+\begin{itemize}
+\item
+  Some other phenomena which have been (controversially) analysed as
+  ellipsis:
+
+  \begin{enumerate}
+  [(1)]
+  \setcounter{enumi}{3}
+  \item
+    \emph{Comparative deletion}\\
+    Fraser stayed out later than Elin \elide{stayed out}.
+  \item
+    \emph{Pronouns}\\
+    A woman walked in. {[}She\(_{\text{D}}\) \elide{woman}{]} sat down.
+  \item
+    \emph{Conjunction reduction}\\
+    Patrick talked to Elin and \elide{Patrick talked to} Fraser.
+  \end{enumerate}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{ellipsis-iii}{%
+Ellipsis iii}}
+
+\begin{itemize}
+\item
+  Ellipsis should be distinguished from other phenomena where linguistic
+  material is missing but nevertheless understood, such as,
+  e.g.~implicature.
+
+  \begin{enumerate}
+  [(1)]
+  \setcounter{enumi}{6}
+  \tightlist
+  \item
+    Fraser danced with some of the people at the party.\\
+    \(\rightsquigarrow\) \emph{Fraser danced with some of the people at
+    the party and he didn’t dance with all of the people at the party}
+  \end{enumerate}
+\item
+  Here, what is \emph{understood} deviates from what we would expect
+  based on the compositional semantics.
+\item
+  There is little to suggest that there was ever a stage in the
+  derivation at which this linguistic material was present, however.
+\item
+  Elliptical phenomena display a distinct signature: the syntax betrays
+  that the linguistic material is \emph{missing}, and the missing
+  material must be \emph{recoverable} based on the context of utterance.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{non-recoverable-deletion}{%
+Non-recoverable deletion}}
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{terminology}{%
+Terminology}}
+
+\begin{center}
+\begin{forest}
+[{TP}
+    [{Elin}]
+    [{T'}
+        [{T\\-ed}]
+        [{VP},tikz={\node [draw,red,fit=()(!1)(!ll)] {};}
+            [{dance}]
+            [{PP} [{until 7 am},roof]]
+        ]
+    ]
+]
+\end{forest}
+%
+\begin{forest}
+[{TP}
+    [{Fraser}]
+    [{T'}
+        [{T\\did}]
+        [{VP},tikz={\node [draw,dashed,fit=()(!1)(!ll)] {};}
+            [{dance}]
+            [{PP} [{until 7am},roof]]
+        ]
+    ]
+]
+\end{forest}
+\end{center}
+
+\begin{itemize}
+\item
+  \textcolor{red}{A(ntecedent)}
+\item
+  \dashuline{E(llipsis) site}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{three-questions}{%
+Three questions}}
+
+\begin{itemize}
+\tightlist
+\item
+  The \emph{structure} question
+\item
+  The \emph{identity} question
+\item
+  The \emph{licensing} question
+\end{itemize}
+
+See \textcite{merchant2018}.
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{the-structure-question}{%
+The structure question}}
+
+\begin{enumerate}
+[(1)]
+\setcounter{enumi}{7}
+\tightlist
+\item
+  In elliptical constructions, is there syntactic structure that is
+  unpronounced?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{the-identity-question}{%
+The identity question}}
+
+\begin{enumerate}
+[(1)]
+\setcounter{enumi}{8}
+\tightlist
+\item
+  What is the relationship between the understood material and its
+  antecedent?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{the-licensing-question}{%
+The licensing question}}
+
+\begin{enumerate}
+[(1)]
+\setcounter{enumi}{9}
+\tightlist
+\item
+  What heads or structures allow for \emph{ellipsis}, and what are the
+  locality conditions on the relation between these structures and
+  ellipsis?
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{the-identity-and-licensing-conditions}{%
+The identity and licensing conditions}}
+
+\begin{itemize}
+\item
+  \emph{The identity question}\\
+  To what extent must an elided constituent be identical to its
+  antecedent? At what level is the identity condition enforced – the
+  narrow syntax, the semantics, or some other level?
+\item
+  \emph{The licensing question}\\
+  What are the \emph{syntactic licensing conditions} governing ellipsis
+  (not everything \emph{recoverable} can necessarily be elided). Can
+  only syntactic constituents be elided?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{guess-who}{%
+Guess who!}}
+
+\begin{itemize}
+\tightlist
+\item
+  Since \textcite{Ross}
+\end{itemize}
+
+\begin{enumerate}
+[(1)]
+\setcounter{enumi}{10}
+\tightlist
+\item
+  guess who Δ.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{%
+\protect\hypertarget{terminology-1}{%
+Terminology}}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Bibliography}
+\bibliographytrue
+\printbibliography[heading=none]
+\end{frame}
 
 \end{document}
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-engine: xetex
-%%% TeX-master: t
-%%% End:
